@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>OpenONVIF Surveillance - {name}</title>
+
+    <style>
+        html, body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        a{
+            display: block;
+            text-align: center;
+            padding: 10px 0;
+            line-height: 20px;
+            font-size: 16px;
+        }
+
+        img{
+            display: block;
+            max-width: 100%;
+            max-height: calc(100% - 40px);
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding: 0 15px 15px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/">Back</a>
+    <img id="image" data-src="{url}" alt="Camera - {name}" />
+
+    <script type="text/javascript">
+        function reloadImage() {
+            var imgTag = document.getElementById("image");
+            imgTag.src = imgTag.getAttribute("data-src") + "?_=" + new Date().getTime();
+        }
+
+        document.getElementById("image").onload = function (e) {
+            window.setTimeout(reloadImage, 1000);
+        };
+        reloadImage();
+    </script>
+</body>
+</html>

@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{54AC8585-D8F8-4A5A-87A6-F0165983617C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenONVIF</RootNamespace>
+    <AssemblyName>OpenONVIF</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\OpenONVIF.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\OpenONVIF.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\AuthenticationNeededAttribute.cs" />
+    <Compile Include="Camera.cs" />
+    <Compile Include="CameraFactory.cs" />
+    <Compile Include="Exception\CameraNotCapableException.cs" />
+    <Compile Include="Exception\UnableToConnectException.cs" />
+    <Compile Include="Extensions\EventExtensions.cs" />
+    <Compile Include="Discovery\DiscoveryRequest.cs" />
+    <Compile Include="Discovery\CameraDiscoveredEventArgs.cs" />
+    <Compile Include="Discovery\DiscoveredCamera.cs" />
+    <Compile Include="Discovery\DiscoveryResponse.cs" />
+    <Compile Include="Resources\ResourceHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Soap\PasswordDigestBehavior.cs" />
+    <Compile Include="Security\Soap\PasswordDigestMessageInspector.cs" />
+    <Compile Include="Service References\Services.Device.Ver10\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Services.Media.Ver10\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Device\IDeviceService.cs" />
+    <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\Device\Ver10\DeviceService.cs" />
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\Media\AudioEncoding.cs" />
+    <Compile Include="Services\Media\IMediaService.cs" />
+    <Compile Include="Services\Media\IMediaProfile.cs" />
+    <Compile Include="Services\Media\Ver10\MediaService.cs" />
+    <Compile Include="Services\Media\Ver10\MediaProfile.cs" />
+    <Compile Include="Services\Media\VideoEncoding.cs" />
+    <Compile Include="Services\ServiceFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Discovery\Resources\DiscoverySOAPMessage.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Services.Device.Ver10\" />
+    <WCFMetadataStorage Include="Service References\Services.Media.Ver10\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\System.Xml.XmlElement.datasource" />
+    <None Include="Service References\Services.Device.Ver10\b-2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\bf-2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\devicemgmt.wsdl" />
+    <None Include="Service References\Services.Device.Ver10\include.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\onvif.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.AddScopesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.BackupFile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.BinaryData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.Capabilities.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.Certificate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.CertificateInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.CertificateStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.CreateCertificateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.CreateUsersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.DeleteCertificatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.DeleteDot1XConfigurationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.DeleteUsersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.DeviceServiceCapabilities.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.DiscoveryMode.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.DNSInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.Dot11AvailableNetworks.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.Dot11Capabilities.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.Dot11Status.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.Dot1XConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.DynamicDNSInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetCACertificatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetCapabilitiesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetCertificateInformationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetCertificatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetCertificatesStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetDeviceInformationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetDot11CapabilitiesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetDot1XConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetDPAddressesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetEndpointReferenceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetNetworkInterfacesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetNetworkProtocolsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetPkcs10RequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetRelayOutputsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetScopesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetServicesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetStorageConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetSystemBackupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetSystemUrisResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetSystemUrisResponseExtension.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetUsersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.GetWsdlUrlResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.HostnameInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.IPAddressFilter.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.LoadCACertificatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.LoadCertificatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.LoadCertificateWithPrivateKeyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.NetworkGateway.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.NetworkHost.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.NetworkInterface.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.NetworkProtocol.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.NetworkZeroConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.NTPInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.RelayOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.RemoteUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.RemoveScopesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.RestoreSystemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.ScanAvailableDot11NetworksResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.Scope.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.Service.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SetCertificatesStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SetDNSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SetDPAddressesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SetDynamicDNSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SetHostnameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SetNetworkDefaultGatewayResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SetNetworkProtocolsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SetNTPResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SetScopesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SetUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.StartFirmwareUpgradeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.StartSystemRestoreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.StorageConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SupportInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SystemDateTime.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SystemLog.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.SystemLogUri.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\OpenONVIF.Services.Device.Ver10.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\t-1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\ws-addr.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\xml.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Device.Ver10\xmlmime.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\b-2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\bf-2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\include.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\media.wsdl" />
+    <None Include="Service References\Services.Media.Ver10\onvif.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.AudioDecoderConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.AudioDecoderConfigurationOptions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.AudioEncoderConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.AudioEncoderConfigurationOptions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.AudioOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.AudioOutputConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.AudioOutputConfigurationOptions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.AudioSource.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.AudioSourceConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.AudioSourceConfigurationOptions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.Capabilities.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.CreateOSDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.DeleteOSDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetAudioDecoderConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetAudioEncoderConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetAudioOutputConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetAudioOutputsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetAudioSourceConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetAudioSourcesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetCompatibleAudioDecoderConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetCompatibleAudioEncoderConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetCompatibleAudioOutputConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetCompatibleAudioSourceConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetCompatibleMetadataConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetCompatibleVideoAnalyticsConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetCompatibleVideoEncoderConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetCompatibleVideoSourceConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetGuaranteedNumberOfVideoEncoderInstancesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetMetadataConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetOSDOptionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetOSDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetOSDsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetProfilesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetVideoAnalyticsConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetVideoEncoderConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetVideoSourceConfigurationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetVideoSourceModesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.GetVideoSourcesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.MediaUri.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.MetadataConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.MetadataConfigurationOptions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.OSDConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.OSDConfigurationOptions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.Profile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.SetOSDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.VideoAnalyticsConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.VideoEncoderConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.VideoEncoderConfigurationOptions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.VideoSource.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.VideoSourceConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.VideoSourceConfigurationOptions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\OpenONVIF.Services.Media.Ver10.VideoSourceMode.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\t-1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\ws-addr.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\xml.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services.Media.Ver10\xmlmime.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Services.Device.Ver10\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Services.Device.Ver10\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Services.Device.Ver10\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Services.Media.Ver10\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Services.Media.Ver10\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Services.Media.Ver10\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

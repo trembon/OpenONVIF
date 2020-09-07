@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25029.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenONVIF", "OpenONVIF\OpenONVIF.csproj", "{54AC8585-D8F8-4A5A-87A6-F0165983617C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenONVIF.ConsoleTest", "OpenONVIF.ConsoleTest\OpenONVIF.ConsoleTest.csproj", "{5F9FFF3A-7053-4E65-8E75-EB87FCCFF46D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenONVIF.Surveillance", "OpenONVIF.Surveillance\OpenONVIF.Surveillance.csproj", "{2E8F2D20-9948-4C39-9FB9-5D6574F28ACE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54AC8585-D8F8-4A5A-87A6-F0165983617C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54AC8585-D8F8-4A5A-87A6-F0165983617C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54AC8585-D8F8-4A5A-87A6-F0165983617C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54AC8585-D8F8-4A5A-87A6-F0165983617C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F9FFF3A-7053-4E65-8E75-EB87FCCFF46D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F9FFF3A-7053-4E65-8E75-EB87FCCFF46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F9FFF3A-7053-4E65-8E75-EB87FCCFF46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F9FFF3A-7053-4E65-8E75-EB87FCCFF46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E8F2D20-9948-4C39-9FB9-5D6574F28ACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E8F2D20-9948-4C39-9FB9-5D6574F28ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E8F2D20-9948-4C39-9FB9-5D6574F28ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E8F2D20-9948-4C39-9FB9-5D6574F28ACE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal
